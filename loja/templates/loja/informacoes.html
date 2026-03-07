@@ -1,0 +1,44 @@
+{% extends 'loja/base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto pb-10">
+    <div class="text-center mb-10">
+        <h2 class="font-display text-3xl text-[#1a5d2e] mb-2 uppercase tracking-widest font-light">Informações Importantes</h2>
+        <div class="w-10 h-0.5 bg-[#a67c37] mx-auto rounded-full opacity-50"></div>
+    </div>
+
+    <div class="bg-white rounded-[40px] p-10 shadow-sm border border-[#e5e0d8] space-y-10">
+        
+        <div class="flex gap-6 items-start group">
+            <div class="w-2 h-2 rounded-full bg-[#a67c37] mt-2 group-hover:scale-150 transition-transform"></div>
+            <div>
+                <h4 class="font-body font-bold text-[#1a5d2e] text-xs uppercase tracking-[0.1em] mb-2">Encomendas</h4>
+                <p class="text-gray-600 font-body text-[13px] leading-relaxed">Os pedidos devem ser realizados com, no mínimo, 24 horas de antecedência para garantir a disponibilidade de todos os itens e a personalização.</p>
+            </div>
+        </div>
+
+        <div class="flex gap-6 items-start group">
+            <div class="w-2 h-2 rounded-full bg-[#a67c37] mt-2 group-hover:scale-150 transition-transform"></div>
+            <div>
+                <h4 class="font-body font-bold text-[#1a5d2e] text-xs uppercase tracking-[0.1em] mb-2">Personalização</h4>
+                <p class="text-gray-600 font-body text-[13px] leading-relaxed">A escrita no balão e na caixa é totalmente personalizável. Informe o nome ou frase desejada no ato do pedido.</p>
+            </div>
+        </div>
+
+        <div class="flex gap-6 items-start group">
+            <div class="w-2 h-2 rounded-full bg-[#a67c37] mt-2 group-hover:scale-150 transition-transform"></div>
+            <div>
+                <h4 class="font-body font-bold text-[#1a5d2e] text-xs uppercase tracking-[0.1em] mb-2">Formas de Pagamento</h4>
+                <p class="text-gray-600 font-body text-[13px] leading-relaxed">No momento aceitamos somente PIX. O agendamento é confirmado mediante pagamento de 50% ou valor integral.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mt-8 text-center">
+        <a href="{% url 'vitrine' %}" class="text-[#a67c37] font-body text-[10px] font-bold uppercase tracking-[0.1em] hover:text-[#1a5d2e]">
+            &larr; Voltar para as Cestas
+        </a>
+    </div>
+</div>
+{% endblock content %}

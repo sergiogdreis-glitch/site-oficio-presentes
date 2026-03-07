@@ -1,0 +1,38 @@
+{% extends 'loja/base.html' %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto pb-16">
+    <div class="text-center mb-12">
+        <h2 class="font-script text-6xl text-[#1a5d2e] mb-4">Nossa História</h2>
+        <p class="font-body text-[#a67c37] tracking-[0.2em] text-xs font-bold uppercase">Afeto em cada detalhe</p>
+    </div>
+
+    <div class="bg-white rounded-[3rem] p-10 md:p-16 shadow-sm border border-[#e5e0d8] text-center">
+        <div class="font-display italic text-xl text-gray-600 mb-8 leading-relaxed">
+            "A Ofício Presentes nasceu do desejo de transformar gestos simples em memórias inesquecíveis."
+        </div>
+        
+        <div class="space-y-6 text-gray-600 font-body text-sm leading-relaxed text-justify md:text-center">
+            <p>
+                Iniciamos nossa jornada em janeiro de 2026, acreditando que um presente vai muito além do objeto físico; ele carrega uma mensagem, um carinho e um momento único de conexão entre quem envia e quem recebe.
+            </p>
+            <p>
+                Cada uma de nossas cestas é montada de forma totalmente artesanal. Selecionamos cuidadosamente produtos de alta qualidade e dedicamos tempo para adicionar aquele toque de personalização que torna cada entrega exclusiva.
+            </p>
+            <p>
+                Nossa missão é ajudar você a demonstrar todo o seu afeto através de presentes que encantam os olhos e confortam o coração. Seja para uma celebração especial ou um simples "lembrei de você", estamos aqui para tornar esse momento mágico.
+            </p>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-[#f7f3ed]">
+            <a href="{% url 'vitrine' %}" class="bg-[#1a5d2e] text-white px-10 py-4 rounded-full font-body font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-[#a67c37] transition-all inline-block shadow-md">
+                Conheça Nossas Cestas
+            </a>
+        </div>
+    </div>
+
+    <div class="mt-8 text-center">
+        <p class="text-[#a67c37] font-body text-[10px] uppercase tracking-[0.3em] opacity-60">Handmade with love • 2026</p>
+    </div>
+</div>
+{% endblock content %}

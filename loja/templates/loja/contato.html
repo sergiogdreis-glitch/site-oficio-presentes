@@ -1,0 +1,41 @@
+{% extends 'loja/base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto pb-16">
+    <div class="text-center mb-12">
+        <h2 class="font-display text-3xl text-[#1a5d2e] mb-2 uppercase tracking-widest font-light">Fale Conosco</h2>
+        <div class="w-10 h-0.5 bg-[#a67c37] mx-auto rounded-full opacity-50"></div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8">
+        <div class="bg-white rounded-[3rem] p-10 shadow-sm border border-[#e5e0d8] text-center transition-all hover:shadow-md">
+            <h3 class="font-script text-4xl text-[#1a5d2e] mb-6">Atendimento Personalizado</h3>
+            <p class="text-gray-600 font-body text-sm mb-10 leading-relaxed">
+                Dúvidas sobre entregas em Osasco ou pedidos especiais? <br>
+                Estamos prontos para te ajudar a criar o presente perfeito.
+            </p>
+
+            <div class="space-y-4">
+                <a href="https://wa.me/5511988074762" target="_blank" class="flex items-center justify-center gap-3 bg-[#1a5d2e] text-white py-4 rounded-full font-body font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-[#a67c37] transition-all">
+                    WhatsApp: (11) 98807-4762
+                </a>
+
+                <a href="https://instagram.com/oficiopresentes" target="_blank" class="flex items-center justify-center gap-3 border border-[#a67c37] text-[#a67c37] py-4 rounded-full font-body font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-[#a67c37] hover:text-white transition-all">
+                    @oficiopresentes
+                </a>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <h4 class="font-body font-bold text-[#1a5d2e] text-[10px] uppercase tracking-widest mb-2">Horário de Atendimento</h4>
+            <p class="text-gray-500 font-body text-[11px]">Segunda a Sábado: 08:00 às 18:00</p>
+        </div>
+    </div>
+
+    <div class="mt-12 text-center">
+        <a href="{% url 'vitrine' %}" class="text-[#a67c37] font-body text-[10px] font-bold uppercase tracking-[0.1em] hover:text-[#1a5d2e]">
+            &larr; Voltar para a Vitrine
+        </a>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends 'loja/base.html' %}
+
+{% block content %}
+    <div class="sticky top-0 z-30 bg-[#f7f3ed]/95 backdrop-blur-md py-4 border-b border-[#e5e0d8] shadow-sm mb-12 -mx-4 px-4 flex items-center space-x-3 overflow-x-auto no-scrollbar whitespace-nowrap touch-pan-x">
+        
+        <a href="{% url 'vitrine' %}" class="shrink-0 px-6 py-2 rounded-full text-[10px] font-bold transition-all min-w-max font-body uppercase tracking-[0.15em] {% if not request.GET.categoria %}bg-[#1a5d2e] text-white shadow-md{% else %}bg-white text-[#1a5d2e] border border-[#dcd6ca] hover:border-[#a67c37]{% endif %}">
+            Todos
+        </a>
+        
+        {% for cat in categorias %}
+        <a href="?categoria={{ cat.id }}" class="shrink-0 px-6 py-2 rounded-full text-[10px] font-bold transition-all min-w-max font-body uppercase tracking-[0.15em] {% if request.GET.categoria == cat.id|stringformat:'s' %}bg-[#1a5d2e] text-white shadow-md{% else %}bg-white text-[#1a5d2e] border border-[#dcd6ca] hover:border-[#a67c37]{% endif %}">
+            {{ cat.nome }}
+        </a>
+        {% endfor %}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        {% for cesta in cestas %}
+            <div class="group flex flex-col h-full">
+                <a href="{% url 'detalhe_cesta' cesta.pk %}" class="relative aspect-[4/5] overflow-hidden rounded-[3rem] cursor-pointer shadow-sm border-2 border-white transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2 block bg-white shrink-0">
+                    {% if cesta.imagem %}
+                        <img src="{{ cesta.imagem.url }}" alt="{{ cesta.nome }}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    {% else %}
+                        <div class="w-full h-full bg-[#e5e0d8] flex items-center justify-center">
+                            <span class="text-[#a67c37] font-body text-sm uppercase tracking-widest font-bold">Sem Imagem</span>
+                        </div>
+                    {% endif %}
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1a5d2e]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </a>
+                
+                <div class="pt-8 text-center px-4 flex flex-col flex-grow">
+                    <div class="min-h-[4rem] flex items-center justify-center mb-2">
+                        <h3 class="font-display text-2xl text-[#1a5d2e] leading-tight">{{ cesta.nome }}</h3>
+                    </div>
+                    
+                    <div class="mt-auto pb-4">
+                        <p class="text-[#a67c37] font-bold text-lg font-body tracking-tight">R$ {{ cesta.preco }}</p>
+                        <a href="{% url 'detalhe_cesta' cesta.pk %}" class="inline-block mt-4 px-8 py-2 border border-[#a67c37] text-[#a67c37] rounded-full font-body text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-[#a67c37] hover:text-white transition-colors duration-300">
+                            Ver Detalhes
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-span-full py-20 text-center">
+                <p class="font-display italic text-gray-500 text-xl">Novidades em breve...</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
