@@ -35,7 +35,7 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </button>
 
-                    <div class="scroll-container flex overflow-x-auto snap-x snap-mandatory h-full w-full no-scrollbar touch-pan-x">
+                    <div class="scroll-container flex overflow-x-auto snap-x snap-mandatory h-full w-full no-scrollbar touch-pan-x scroll-smooth">
                         
                         <a href="{% url 'detalhe_cesta' cesta.pk %}" class="snap-center shrink-0 w-full h-full block">
                             {% if cesta.imagem %}
