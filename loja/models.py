@@ -21,3 +21,12 @@ class Cesta(models.Model):
 
     def __str__(self):
         return self.nome
+    
+    # 3. Tabela para as fotos extras (Galeria)
+class ImagemCesta(models.Model):
+    # A ponte que liga várias fotos a uma única Cesta
+    cesta = models.ForeignKey(Cesta, related_name='imagens_galeria', on_delete=models.CASCADE)
+    imagem = models.ImageField(upload_to='cestas/galeria/')
+
+    def __str__(self):
+        return f"Foto extra de: {self.cesta.nome}"

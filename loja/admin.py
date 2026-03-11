@@ -1,13 +1,14 @@
 from django.contrib import admin
-from .models import Cesta, Categoria
+from .models import Categoria, Cesta, ImagemCesta
 
-# Registrando a Categoria para aparecer no painel
-@admin.register(Categoria)
-class CategoriaAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('nome',)} # Preenche o slug automaticamente
+# Isso cria aquele bloco extra de fotos dentro da página da cesta
+class ImagemCestaInline(admin.TabularInline):
+    model = ImagemCesta
+    extra = 1  # Deixa sempre 1 espaço em branco pronto para uma nova foto
 
-# Registrando a Cesta
-@admin.register(Cesta)
 class CestaAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'categoria', 'preco', 'disponivel')
-    list_filter = ('categoria', 'disponivel')
+    inlines = [ImagemCestaInline]
+    list_display = ['nome', 'preco', 'categoria', 'disponivel']
+
+admin.site.register(Categoria)
+admin.site.register(Cesta, CestaAdmin)
