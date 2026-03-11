@@ -2,11 +2,9 @@
 
 {% block content %}
     <div class="sticky top-0 z-30 bg-[#f7f3ed]/95 backdrop-blur-md py-4 border-b border-[#e5e0d8] shadow-sm mb-12 -mx-4 px-4 flex items-center space-x-3 overflow-x-auto no-scrollbar whitespace-nowrap touch-pan-x">
-        
         <a href="{% url 'vitrine' %}" class="shrink-0 px-6 py-2 rounded-full text-[10px] font-bold transition-all min-w-max font-body uppercase tracking-[0.15em] {% if not request.GET.categoria %}bg-[#1a5d2e] text-white shadow-md{% else %}bg-white text-[#1a5d2e] border border-[#dcd6ca] hover:border-[#a67c37]{% endif %}">
             Todos
         </a>
-        
         {% for cat in categorias %}
         <a href="?categoria={{ cat.id }}" class="shrink-0 px-6 py-2 rounded-full text-[10px] font-bold transition-all min-w-max font-body uppercase tracking-[0.15em] {% if request.GET.categoria == cat.id|stringformat:'s' %}bg-[#1a5d2e] text-white shadow-md{% else %}bg-white text-[#1a5d2e] border border-[#dcd6ca] hover:border-[#a67c37]{% endif %}">
             {{ cat.nome }}
@@ -27,22 +25,31 @@
                     </a>
                 </div>
 
-                <a href="{% url 'detalhe_cesta' cesta.pk %}" class="relative aspect-[4/5] overflow-hidden rounded-3xl cursor-pointer shadow-sm border-2 border-white transition-all duration-500 group-hover:shadow-xl group-hover:-translate-y-1 block bg-white shrink-0">
-                    {% if cesta.imagem %}
-                        <img src="{{ cesta.imagem.url }}" alt="{{ cesta.nome }}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                    {% else %}
-                        <div class="w-full h-full bg-[#e5e0d8] flex items-center justify-center">
-                            <span class="text-[#a67c37] font-body text-xs uppercase tracking-widest font-bold">Sem Imagem</span>
-                        </div>
-                    {% endif %}
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#1a5d2e]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </a>
+                <div class="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-sm border-2 border-white transition-all duration-500 hover:shadow-xl hover:-translate-y-1 bg-white shrink-0">
+                    <div class="flex overflow-x-auto snap-x snap-mandatory h-full w-full no-scrollbar touch-pan-x">
+                        
+                        <a href="{% url 'detalhe_cesta' cesta.pk %}" class="snap-center shrink-0 w-full h-full block">
+                            {% if cesta.imagem %}
+                                <img src="{{ cesta.imagem.url }}" alt="{{ cesta.nome }}" class="w-full h-full object-cover">
+                            {% else %}
+                                <div class="w-full h-full bg-[#e5e0d8] flex items-center justify-center">
+                                    <span class="text-[#a67c37] font-body text-xs uppercase tracking-widest font-bold">Sem Imagem</span>
+                                </div>
+                            {% endif %}
+                        </a>
+
+                        {% for foto in cesta.imagens_galeria.all %}
+                        <a href="{% url 'detalhe_cesta' cesta.pk %}" class="snap-center shrink-0 w-full h-full block">
+                            <img src="{{ foto.imagem.url }}" alt="Detalhe" class="w-full h-full object-cover">
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
                 
                 <div class="pt-3 md:pt-6 text-center px-2 md:px-4 flex flex-col flex-grow">
                     <div class="min-h-[3rem] md:min-h-[4rem] flex items-center justify-center mb-1">
                         <h3 class="font-display text-base md:text-xl text-[#1a5d2e] leading-tight">{{ cesta.nome }}</h3>
                     </div>
-                    
                     <div class="mt-auto pb-2 md:pb-4">
                         <p class="text-[#a67c37] font-bold text-sm md:text-lg font-body tracking-tight">R$ {{ cesta.preco }}</p>
                     </div>
