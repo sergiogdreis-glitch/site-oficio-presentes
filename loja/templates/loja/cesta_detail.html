@@ -7,7 +7,7 @@
             
             <div class="relative flex-grow">
                 {% if cesta.imagem %}
-                    <img id="imagem-principal" src="{{ cesta.imagem.url }}" alt="{{ cesta.nome }}" class="w-full h-full object-cover aspect-square md:aspect-auto min-h-[300px] transition-opacity duration-300 opacity-100">
+                    <img id="imagem-principal" src="{{ cesta.imagem.url }}" alt="{{ cesta.nome }}" class="w-full h-full object-cover aspect-square md:aspect-auto min-h-[300px]" style="transition: opacity 0.3s ease-in-out;">
                 {% else %}
                     <div class="h-96 md:h-full w-full flex items-center justify-center">
                         <span class="text-[#a67c37] font-body text-sm uppercase tracking-widest font-bold">Sem Imagem</span>
@@ -74,16 +74,15 @@
     <script>
         function trocarImagem(novaUrl) {
             const img = document.getElementById('imagem-principal');
-            // Esconde a imagem atual (fade out)
-            img.classList.remove('opacity-100');
-            img.classList.add('opacity-0');
             
-            // Aguarda 150 milissegundos, troca a foto, e mostra a nova (fade in)
+            // 1. Deixa a imagem transparente (Fade Out)
+            img.style.opacity = '0';
+            
+            // 2. Espera 300 milissegundos (o tempo certinho do fade), troca a foto e acende a nova (Fade In)
             setTimeout(() => {
                 img.src = novaUrl;
-                img.classList.remove('opacity-0');
-                img.classList.add('opacity-100');
-            }, 150);
+                img.style.opacity = '1';
+            }, 300);
         }
     </script>
 {% endblock content %}
