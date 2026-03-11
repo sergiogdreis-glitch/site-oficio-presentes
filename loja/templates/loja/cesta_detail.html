@@ -19,17 +19,28 @@
             <div class="p-4 md:p-6 bg-white border-t border-[#e5e0d8]">
                 <p class="text-[10px] font-body text-[#1a5d2e] uppercase tracking-widest mb-3 font-bold">Arraste para o lado ou clique para ampliar:</p>
                 
-                <div class="flex overflow-x-auto snap-x snap-mandatory gap-3 pb-2 no-scrollbar touch-pan-x">
+                <div class="relative group/miniaturas">
                     
-                    <div class="snap-start shrink-0 w-24 h-24 cursor-pointer rounded-xl overflow-hidden border border-[#dcd6ca] shadow-sm hover:border-[#a67c37]" onclick="document.getElementById('imagem-principal').src='{{ cesta.imagem.url }}'">
-                        <img src="{{ cesta.imagem.url }}" class="w-full h-full object-cover">
-                    </div>
+                    <button onclick="this.parentElement.querySelector('.scroll-container').scrollBy({left: -150, behavior: 'smooth'})" class="hidden md:flex absolute -left-2 top-1/2 -translate-y-1/2 z-10 bg-white/95 p-1.5 rounded-full shadow border border-[#dcd6ca] text-[#1a5d2e] opacity-0 group-hover/miniaturas:opacity-100 transition-all hover:bg-[#1a5d2e] hover:text-white">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
 
-                    {% for foto in cesta.imagens_galeria.all %}
-                        <div class="snap-start shrink-0 w-24 h-24 cursor-pointer rounded-xl overflow-hidden border border-[#dcd6ca] shadow-sm hover:border-[#a67c37]" onclick="document.getElementById('imagem-principal').src='{{ foto.imagem.url }}'">
-                            <img src="{{ foto.imagem.url }}" alt="Detalhe" class="w-full h-full object-cover">
+                    <button onclick="this.parentElement.querySelector('.scroll-container').scrollBy({left: 150, behavior: 'smooth'})" class="hidden md:flex absolute -right-2 top-1/2 -translate-y-1/2 z-10 bg-white/95 p-1.5 rounded-full shadow border border-[#dcd6ca] text-[#1a5d2e] opacity-0 group-hover/miniaturas:opacity-100 transition-all hover:bg-[#1a5d2e] hover:text-white">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+
+                    <div class="scroll-container flex overflow-x-auto snap-x snap-mandatory gap-3 pb-2 no-scrollbar touch-pan-x">
+                        
+                        <div class="snap-start shrink-0 w-24 h-24 cursor-pointer rounded-xl overflow-hidden border border-[#dcd6ca] shadow-sm hover:border-[#a67c37]" onclick="document.getElementById('imagem-principal').src='{{ cesta.imagem.url }}'">
+                            <img src="{{ cesta.imagem.url }}" class="w-full h-full object-cover">
                         </div>
-                    {% endfor %}
+
+                        {% for foto in cesta.imagens_galeria.all %}
+                            <div class="snap-start shrink-0 w-24 h-24 cursor-pointer rounded-xl overflow-hidden border border-[#dcd6ca] shadow-sm hover:border-[#a67c37]" onclick="document.getElementById('imagem-principal').src='{{ foto.imagem.url }}'">
+                                <img src="{{ foto.imagem.url }}" alt="Detalhe" class="w-full h-full object-cover">
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
             {% endif %}
