@@ -30,17 +30,26 @@
 
                     <div class="scroll-container flex overflow-x-auto snap-x snap-mandatory gap-3 pb-2 no-scrollbar touch-pan-x scroll-smooth">
                         
-                        <div class="snap-start shrink-0 w-24 h-24 cursor-pointer rounded-xl overflow-hidden border border-[#dcd6ca] shadow-sm hover:border-[#a67c37]" onclick="trocarImagem('{{ cesta.imagem.url }}')">
+                        <div class="snap-start shrink-0 w-24 h-24 cursor-pointer rounded-xl overflow-hidden border border-[#dcd6ca] shadow-sm hover:border-[#a67c37]" onclick="trocarImagem('{{ cesta.imagem.url }}', 0)">
                             <img src="{{ cesta.imagem.url }}" class="w-full h-full object-cover">
                         </div>
 
                         {% for foto in cesta.imagens_galeria.all %}
-                            <div class="snap-start shrink-0 w-24 h-24 cursor-pointer rounded-xl overflow-hidden border border-[#dcd6ca] shadow-sm hover:border-[#a67c37]" onclick="trocarImagem('{{ foto.imagem.url }}')">
+                            <div class="snap-start shrink-0 w-24 h-24 cursor-pointer rounded-xl overflow-hidden border border-[#dcd6ca] shadow-sm hover:border-[#a67c37]" onclick="trocarImagem('{{ foto.imagem.url }}', {{ forloop.counter }})">
                                 <img src="{{ foto.imagem.url }}" alt="Detalhe" class="w-full h-full object-cover">
                             </div>
                         {% endfor %}
                     </div>
                 </div>
+
+                <div class="flex justify-center gap-1.5 mt-4" id="galeria-dots">
+                    <button onclick="trocarImagem('{{ cesta.imagem.url }}', 0)" class="w-2 h-2 rounded-full bg-[#1a5d2e] transition-colors duration-300 dot-indicator"></button>
+                    
+                    {% for foto in cesta.imagens_galeria.all %}
+                        <button onclick="trocarImagem('{{ foto.imagem.url }}', {{ forloop.counter }})" class="w-2 h-2 rounded-full bg-[#dcd6ca] transition-colors duration-300 dot-indicator"></button>
+                    {% endfor %}
+                </div>
+
             </div>
             {% endif %}
         </div>
@@ -72,17 +81,31 @@
     </div>
 
     <script>
-        function trocarImagem(novaUrl) {
+        function trocarImagem(novaUrl, index) {
             const img = document.getElementById('imagem-principal');
             
-            // 1. Deixa a imagem transparente (Fade Out)
+            // 1. Efeito Fade (apaga a imagem)
             img.style.opacity = '0';
             
-            // 2. Espera 300 milissegundos (o tempo certinho do fade), troca a foto e acende a nova (Fade In)
+            // 2. Troca a foto e acende novamente
             setTimeout(() => {
                 img.src = novaUrl;
                 img.style.opacity = '1';
             }, 300);
+
+            // 3. Atualiza as cores das bolinhas
+            const dots = document.querySelectorAll('.dot-indicator');
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    // Acende a bolinha clicada (verde escuro da sua paleta)
+                    dot.classList.remove('bg-[#dcd6ca]');
+                    dot.classList.add('bg-[#1a5d2e]');
+                } else {
+                    // Apaga as outras (bege claro)
+                    dot.classList.remove('bg-[#1a5d2e]');
+                    dot.classList.add('bg-[#dcd6ca]');
+                }
+            });
         }
     </script>
 {% endblock content %}
