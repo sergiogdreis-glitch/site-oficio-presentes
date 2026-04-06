@@ -18,7 +18,8 @@ class VitrineView(ListView):
         categoria_id = self.request.GET.get('categoria')
         
         if categoria_id:
-            queryset = queryset.filter(categoria_id=categoria_id)
+            # A MÁGICA ACONTECE AQUI: categorias__id (com dois underlines)
+            queryset = queryset.filter(categorias__id=categoria_id)
             
         return queryset
 

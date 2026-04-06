@@ -11,7 +11,7 @@ class Categoria(models.Model):
 # 2. Atualizamos a Cesta para pertencer a uma Categoria
 class Cesta(models.Model):
     # A linha abaixo é a ponte mágica (ForeignKey)
-    categoria = models.ForeignKey(Categoria, related_name='cestas', on_delete=models.CASCADE, null=True)
+    categorias = models.ManyToManyField(Categoria, related_name='cestas', blank=True)
     
     nome = models.CharField(max_length=100)
     descricao = models.TextField()

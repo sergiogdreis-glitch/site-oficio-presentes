@@ -8,7 +8,7 @@ class ImagemCestaInline(admin.TabularInline):
 
 class CestaAdmin(admin.ModelAdmin):
     inlines = [ImagemCestaInline]
-    list_display = ['nome', 'preco', 'categoria', 'disponivel']
+    list_display = ['nome', 'preco', 'disponivel']
 
 admin.site.register(Categoria)
 admin.site.register(Cesta, CestaAdmin)
